@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Addresses</title>
+</head>
+<body>
+    <h1>Addresses</h1>
+    <ul>
+        {% for address in addresses %}
+            <li>
+                {{ address.address_line }}, {{ address.city }}, {{ address.state }}, {{ address.postal_code }}
+                <a href="{% url 'delete_address' address.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_address' %}">Add Address</a>
+</body>
+</html>

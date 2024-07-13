@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <ul>
+        {% for item in cart.cartitem_set.all %}
+            <li>
+                {{ item.product.name }} - {{ item.quantity }} 
+                <a href="{% url 'remove_from_cart' item.product.id %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'place_order' %}">Place Order</a>
+</body>
+</html>

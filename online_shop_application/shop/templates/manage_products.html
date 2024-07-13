@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Management</h2>
+
+    <!-- Table of Current Products -->
+    <h3>Current Products</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>
+                    <form method="post" action="{% url 'delete_product' product.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form method="get" action="{% url 'modify_product' product.id %}">
+                        <button type="submit">Modify</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Form to Add a Product -->
+    <h3>Add Product</h3>
+    <form method="post" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <label for="product_name">Product Name:</label><br>
+        <input type="text" id="product_name" name="product_name"><br>
+        <label for="product_price">Product Price:</label><br>
+        <input type="number" id="product_price" name="product_price"><br><br>
+        <button type="submit">Add Product</button>
+    </form>
+
+    <!-- Form to Delete a Product -->
+    <h3>Delete Product</h3>
+    <form method="post" action="{% url 'delete_product' %}">
+        {% csrf_token %}
+        <label for="delete_product_id">Product ID to Delete:</label><br>
+        <input type="number" id="delete_product_id" name="delete_product_id"><br><br>
+        <button type="submit">Delete Product</button>
+    </form>
+
+    <!-- Form for Modifying a Product -->
+    <h3>Modify Product</h3>
+    <form method="get" action="{% url 'modify_product' %}">
+        <label for="modify_product_id">Product ID to Modify:</label><br>
+        <input type="number" id="modify_product_id" name="modify_product_id"><br><br>
+        <button type="submit">Modify Product</button>
+    </form>
+
+</body>
+</html>

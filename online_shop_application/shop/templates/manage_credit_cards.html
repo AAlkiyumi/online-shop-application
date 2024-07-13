@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manage Credit Cards</title>
+</head>
+<body>
+    <h1>Credit Cards</h1>
+    <ul>
+        {% for card in credit_cards %}
+            <li>
+                {{ card.card_number }} - {{ card.expiry_date }}
+                <a href="{% url 'delete_credit_card' card.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'add_credit_card' %}">Add Credit Card</a>
+</body>
+</html>

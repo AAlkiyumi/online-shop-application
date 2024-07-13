@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Stock to Warehouse</title>
+</head>
+<body>
+    <h2>Add Stock to Warehouse</h2>
+    <form method="post" action="{% url 'add_stock' %}">
+        {% csrf_token %}
+        <!-- Stock Form Fields -->
+        <label for="product_id">Product ID:</label><br>
+        <input type="number" id="product_id" name="product_id"><br>
+        <label for="warehouse_id">Warehouse ID:</label><br>
+        <input type="number" id="warehouse_id" name="warehouse_id"><br>
+        <label for="quantity">Quantity:</label><br>
+        <input type="number" id="quantity" name="quantity"><br><br>
+        <!-- Action Buttons -->
+        <button type="submit">Add Stock</button>
+    </form>
+</body>
+</html>
