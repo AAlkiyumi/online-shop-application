@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Warehouse, Stock
 from .forms import ProductForm, StockForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 def staff_dashboard(request):
     return render(request, 'staff_dashboard.html')
@@ -70,6 +71,8 @@ def add_stock(request):
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import *
 from .models import *
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
 
 def register_user(request):
     if request.method == 'POST':
