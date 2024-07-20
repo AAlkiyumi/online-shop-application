@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Product List</title>
+    <title>Address List</title>
 </head>
 <body>
-    <h1>Products</h1>
+    <h1>Addresses</h1>
     <ul>
-        {% for product in products %}
-            <li>
-                <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }}
-            </li>
+        {% for address in addresses %}
+            {{address.street}}
+            {{address.city}}
+            {{address.state}}
+            {{address.zipcode}}
+            {{address.country}}
         {% endfor %}
     </ul>
 </body>
