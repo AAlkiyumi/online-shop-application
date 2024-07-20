@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Staff Dashboard</h1>
+    <nav>
+        <a href="">Home</a> |
+        <a href="products/">Products</a> |
+        <a href="login/">Login</a> |
+        <a href="staff/new/">New Staff Member</a> |
+        <a href="logout/">Logout</a>
+    </nav>
     <ul>
         <li><a href="{% url 'manage_products' %}">Manage Products</a></li>
         <li><a href="{% url 'add_stock' %}">Add Stock to Warehouse</a></li>
