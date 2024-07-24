@@ -1,6 +1,6 @@
 # Online Shop Application
 
-This project is an Online Shop Application built with Django, HTML, CSS and PostgreSQL, designed to facilitate e-commerce operations including product browsing, shopping cart management, and order processing.
+This project is an Online Shop Application built with React for the frontend, Django for the backend, and PostgreSQL database. It includes functionalities for managing products, orders, stock, and customer information. Users can browse products, add items to their shopping cart, and proceed through checkout with a choice of delivery plans and payment methods.
 
 ## Table of Contents
 
@@ -32,9 +32,12 @@ The Online Shop Application provides a platform for customers to browse products
 To run the project locally, follow these steps:
 
 1. **Prerequisites:**
-   - Python 3.x
+   - Python 3
    - Django
+   - Django REST Framework
    - PostgreSQL
+   - Node.js
+   - npm
 
 2. **Clone the repository:**
    ```bash
@@ -57,14 +60,21 @@ To run the project locally, follow these steps:
 6. **Run the server:**
    ```bash
    python manage.py runserver
-
-7. **Access the application:**
+7. **Run the React UI client**
+   ```bash
+   npm start
+   
+8. **Access the server API:**
    
    Open a web browser and go to http://127.0.0.1:8000/
 
+9. **Access the website:**
+
+   Open a web browser and go to http://127.0.0.1:3000/
+
 ## Usage
 
-Once the server is running and you've accessed http://127.0.0.1:8000/, you can:
+Once the server is running and you've accessed http://127.0.0.1:3000/, you can:
 
 - Log in as a customer or staff member.
 - Browse products, add them to your cart, and place orders.
@@ -75,4 +85,3 @@ Once the server is running and you've accessed http://127.0.0.1:8000/, you can:
 - Jacob Towne - Web Developer
 - Joe Ferguson - SQL Developer
 - Zach Reising - Web Developer
-
