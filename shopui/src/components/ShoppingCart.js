@@ -100,6 +100,7 @@ const ShoppingCart = ({ cart = [], updateCartQuantity, removeFromCart, handleChe
   return (
     <div className="shopping-cart">
       <h2>Shopping Cart</h2>
+      <h2><a href='/'>Home</a></h2>
       {Array.isArray(cart) && cart.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (

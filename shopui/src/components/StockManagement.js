@@ -94,6 +94,7 @@ const StockManagement = () => {
   return (
     <div>
       <h1>Stock Management</h1>
+      <h2><a href='/'>Home</a></h2>
       <div>
         <h2>{isEditing ? 'Edit Stock' : 'Create New Stock'}</h2>
         <form

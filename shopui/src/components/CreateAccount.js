@@ -58,6 +58,7 @@ const CreateAccount = () => {
     return (
         <div>
             <h1>Create Account</h1>
+            <h2><a href='/'>Home</a></h2>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:

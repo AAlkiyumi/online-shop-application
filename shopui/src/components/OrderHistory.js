@@ -29,6 +29,7 @@ const OrderHistory = () => {
   return (
     <div>
       <h1>Order History</h1>
+      <h2><a href='/'>Home</a></h2>
       {orders.length === 0 ? (
         <p>No orders found. Check back later!</p>
       ) : (

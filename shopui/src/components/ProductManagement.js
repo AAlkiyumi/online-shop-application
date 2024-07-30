@@ -83,6 +83,7 @@ const ProductManagement = () => {
   return (
     <div>
       <h1>Product Management</h1>
+      <h2><a href='/'>Home</a></h2>
       <div>
         <h2>{isEditing ? 'Edit Product' : 'Create New Product'}</h2>
         <form onSubmit={(e) => {
