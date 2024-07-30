@@ -163,14 +163,14 @@ const AddressManagement = () => {
       <h2>Address List</h2>
       <ul>
         {addresses.length > 0 ? (
-          addresses.map(address => (
+          addresses.filter(address => address.type !== 'W').map(address => (
             <li key={address.address_ID}>
               <p>Street: {address.street}</p>
               <p>City: {address.city}</p>
               <p>State: {address.state}</p>
               <p>Zipcode: {address.zipcode}</p>
               <p>Country: {address.country}</p>
-              <p>Type: {address.type === 'B' ? 'Billing' : address.type === 'S' ? 'Shipping' : 'Warehouse'}</p>
+              <p>Type: {address.type === 'B' ? 'Billing' : 'Shipping'}</p>
               <button onClick={() => handleEdit(address)}>Edit</button>
               <button onClick={() => handleDelete(address.address_ID)}>Delete</button>
             </li>
