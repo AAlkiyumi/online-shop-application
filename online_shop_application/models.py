@@ -117,11 +117,11 @@ class Customer(models.Model):
 class Custorder(models.Model):
     order_id = models.IntegerField(primary_key=True)
     order_date = models.DateField(blank=True, null=True)
-    status = models.CharField(max_length=1, blank=True, null=True)
+    status = models.CharField(max_length=10, blank=True, null=True)
     total_price = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    card_no = models.ForeignKey(CreditCard, models.DO_NOTHING, db_column='card_no', blank=True, null=True)
-    card_type = models.CharField(max_length=15, blank=True, null=True)
-    expiry_date = models.CharField(max_length=7, blank=True, null=True)
+    card_no = models.ForeignKey(CreditCard.card_no, models.DO_NOTHING, db_column='card_no', blank=True, null=True)
+    card_type = models.CharField(CreditCard.card_type, blank=True, null=True)
+    expiry_date = models.CharField(CreditCard.expiry_date, blank=True, null=True)
     cust = models.ForeignKey(Customer, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
