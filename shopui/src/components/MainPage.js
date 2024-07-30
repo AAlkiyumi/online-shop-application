@@ -15,6 +15,7 @@ function MainPage() {
       </ul>
       <h2>For Customers:</h2>
       <ul>
+        <li><Link to="/create-account">Create Account</Link></li>
         <li><Link to="/products">Product Catalog</Link></li>
         <li><Link to="/cart">Shopping Cart</Link></li>
         <li><Link to="/orders">Order History</Link></li>

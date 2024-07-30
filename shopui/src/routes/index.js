@@ -11,6 +11,7 @@ import WarehouseManagement from '../components/WarehouseManagement';
 import StockManagement from '../components/StockManagement';
 import OrderManagement from '../components/OrderManagement';
 import DeliveryPlanManagement from '../components/DeliveryPlanManagement';
+import CreateAccount from '../components/CreateAccount';
 
 function AppRoutes() {
   return (
@@ -27,6 +28,7 @@ function AppRoutes() {
         <Route path="/stock-management" element={<StockManagement />} />
         <Route path="/order-management" element={<OrderManagement />} />
         <Route path="/delivery-plan-management" element={<DeliveryPlanManagement />} />
+        <Route path="/create-account" element={<CreateAccount />} />
       </Routes>
     </Router>
   );
