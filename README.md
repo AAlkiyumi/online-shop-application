@@ -35,6 +35,8 @@ To run the project locally, follow these steps:
    - Python 3
    - Django
    - Django REST Framework
+   - Django Cors Headers
+   - psycopg2
    - PostgreSQL
    - Node.js
    - npm
