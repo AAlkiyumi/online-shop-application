@@ -26,9 +26,27 @@ const CreditCardManagement = () => {
     }
   };
 
+  const formatExpiryDate = (value) => {
+    // Remove all non-digit characters
+    const cleanedValue = value.replace(/\D/g, '');
+
+    // Format MM/YY
+    if (cleanedValue.length >= 3) {
+      return cleanedValue.slice(0, 2) + '/' + cleanedValue.slice(2, 4);
+    }
+
+    return cleanedValue;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevData => ({ ...prevData, [name]: value }));
+
+    if (name === 'expiry_date') {
+      const formattedValue = formatExpiryDate(value);
+      setFormData(prevData => ({ ...prevData, [name]: formattedValue }));
+    } else {
+      setFormData(prevData => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -109,6 +127,7 @@ const CreditCardManagement = () => {
           <input
             type="text"
             name="expiry_date"
+            placeholder="MM/YY"
             value={formData.expiry_date}
             onChange={handleChange}
             required
@@ -134,8 +153,10 @@ const CreditCardManagement = () => {
             required
           />
         </label>
-        <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
-        <button type="button" onClick={() => { setIsEditing(false); setCurrentCardId(null); setFormData({ card_no: '', card_type: '', expiry_date: '', address_ID: '', cust_ID: '' }); }}>Cancel</button>
+        <div style={{ display: 'flex', gap: '10px'}}>
+          <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+          <button type="button" onClick={() => { setIsEditing(false); setCurrentCardId(null); setFormData({ card_no: '', card_type: '', expiry_date: '', address_ID: '', cust_ID: '' }); }}>Cancel</button>
+        </div>
       </form>
       <h2>Credit Card List</h2>
       <ul>
