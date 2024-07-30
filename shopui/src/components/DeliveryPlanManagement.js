@@ -79,6 +79,7 @@ const DeliveryPlanManagement = () => {
   return (
     <div>
       <h1>Delivery Plan Management</h1>
+      <h2><a href='/'>Home</a></h2>
       <div>
         <h2>{isEditing ? 'Edit Delivery Plan' : 'Create New Delivery Plan'}</h2>
         <form onSubmit={(e) => {
