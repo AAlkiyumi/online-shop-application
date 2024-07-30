@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getAddresses, createAddress, updateAddress, deleteAddress } from '../api/api';
+import countries from './countries.json' // Obtained from https://gist.github.com/bensquire/1ba2037079b69e38bb0d6aea4c4a0229
 
 const AddressManagement = () => {
   const [addresses, setAddresses] = useState([]);
@@ -128,13 +129,19 @@ const AddressManagement = () => {
         </label>
         <label>
           Country:
-          <input
-            type="text"
+          <select
             name="country"
             value={formData.country}
             onChange={handleChange}
             required
-          />
+          >
+            <option value="">Select a country</option>
+            {countries.map(country => (
+              <option value={country.code}>
+                {country.name}
+              </option>
+            ))}
+          </select>
         </label>
         <label>
           Type:
@@ -148,8 +155,10 @@ const AddressManagement = () => {
             <option value="S">Shipping</option>
           </select>
         </label>
-        <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
-        <button type="button" onClick={() => { setIsEditing(false); setCurrentAddressId(null); setFormData({ street: '', city: '', state: '', zipcode: '', country: '', type: 'B' }); }}>Cancel</button>
+        <div style={{ display: 'flex', gap: '10px' }}>
+          <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+          <button type="button" onClick={() => { setIsEditing(false); setCurrentAddressId(null); setFormData({ street: '', city: '', state: '', zipcode: '', country: '', type: 'B' }); }}>Cancel</button>
+        </div>
       </form>
       <h2>Address List</h2>
       <ul>
@@ -161,7 +170,7 @@ const AddressManagement = () => {
               <p>State: {address.state}</p>
               <p>Zipcode: {address.zipcode}</p>
               <p>Country: {address.country}</p>
-              <p>Type: {address.type === 'B' ? 'Billing' : 'Shipping'}</p>
+              <p>Type: {address.type === 'B' ? 'Billing' : address.type === 'S' ? 'Shipping' : 'Warehouse'}</p>
               <button onClick={() => handleEdit(address)}>Edit</button>
               <button onClick={() => handleDelete(address.address_ID)}>Delete</button>
             </li>
