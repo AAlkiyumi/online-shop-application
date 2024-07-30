@@ -3,7 +3,7 @@ import { getProducts, createProduct, updateProduct, deleteProduct } from '../api
 
 const ProductManagement = () => {
   const [products, setProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({
+  const [formData, setFormData] = useState({
     name: '',
     category: '',
     brand: '',
@@ -12,7 +12,7 @@ const ProductManagement = () => {
     description: '',
     price: ''
   });
-  const [editProduct, setEditProduct] = useState(null);
+  const [currentProductID, setCurrentProductID] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   useEffect(() => {
@@ -28,20 +28,18 @@ const ProductManagement = () => {
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    if (isEditing) {
-      setEditProduct(prev => ({ ...prev, [name]: value }));
-    } else {
-      setNewProduct(prev => ({ ...prev, [name]: value }));
-    }
-  };
-
-  const handleCreate = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await createProduct(newProduct);
-      fetchProducts(); // Refresh the list
-      setNewProduct({
+      if (isEditing) {
+        // Update the address
+        await updateProduct(currentProductID, formData);
+      } else {
+        // Create a new address
+        await createProduct(formData);
+      }
+      // Reset form and state
+      setFormData({
         name: '',
         category: '',
         brand: '',
@@ -50,25 +48,32 @@ const ProductManagement = () => {
         description: '',
         price: ''
       });
+      setIsEditing(false);
+      setCurrentProductID(null);
+      fetchProducts(); // Refresh the list
     } catch (error) {
       console.error('Failed to create product', error);
     }
   };
 
-  const handleEdit = (product) => {
-    setEditProduct(product);
-    setIsEditing(true);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevData => ({ ...prevData, [name]: value }));
   };
 
-  const handleUpdate = async () => {
-    try {
-      await updateProduct(editProduct.prod_ID, editProduct);
-      fetchProducts(); // Refresh the list
-      setIsEditing(false);
-      setEditProduct(null);
-    } catch (error) {
-      console.error('Failed to update product', error);
-    }
+  const handleEdit = (product) => {
+    setFormData({
+      name: product.name,
+      category: product.category,
+      brand: product.brand,
+      size: product.size,
+      size_unit: product.size_unit,
+      description: product.description,
+      price: product.price
+    });
+    setIsEditing(true);
+    setCurrentProductID(product.prod_ID);
   };
 
   const handleDelete = async (productId) => {
@@ -86,46 +91,97 @@ const ProductManagement = () => {
       <h2><a href='/'>Home</a></h2>
       <div>
         <h2>{isEditing ? 'Edit Product' : 'Create New Product'}</h2>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          isEditing ? handleUpdate() : handleCreate();
-        }}>
+        <form onSubmit={handleSubmit}>
           <label>
             Name:
-            <input type="text" name="name" value={isEditing ? editProduct.name : newProduct.name} onChange={handleChange} required />
+            <input 
+              type="text" 
+              name="name" 
+              value={formData.name} 
+              onChange={handleChange} 
+              required 
+            />
           </label>
           <br />
           <label>
             Category:
-            <input type="text" name="category" value={isEditing ? editProduct.category : newProduct.category} onChange={handleChange} required />
+            <select 
+              type="text" 
+              name="category" 
+              value={formData.category} 
+              onChange={handleChange} 
+              required 
+            >
+              <option value=''>Select a category</option>
+              <option value='Food'>Food</option>
+              <option value='Clothing'>Clothing</option>
+              <option value='Furniture'>Furniture</option>
+              <option value='Electronics'>Electronics</option>
+              <option value='Home Essentials'>Home Essentials</option>
+              <option value='Sports & Outdoors'>Sports & Outdoors</option>
+            </select>
           </label>
           <br />
           <label>
             Brand:
-            <input type="text" name="brand" value={isEditing ? editProduct.brand : newProduct.brand} onChange={handleChange} required />
+            <input 
+              type="text" 
+              name="brand" 
+              value={formData.brand} 
+              onChange={handleChange} 
+              required 
+            />
           </label>
           <br />
           <label>
             Size:
-            <input type="number" name="size" step="any" value={isEditing ? editProduct.size : newProduct.size} onChange={handleChange} required />
+            <input 
+              type="number" 
+              name="size" 
+              step="any" 
+              value={formData.size}
+              onChange={handleChange} 
+              required 
+            />
           </label>
           <br />
           <label>
             Size Unit:
-            <input type="text" name="size_unit" value={isEditing ? editProduct.size_unit : newProduct.size_unit} onChange={handleChange} required />
+            <input 
+              type="text" 
+              name="size_unit" 
+              value={formData.size_unit} 
+              onChange={handleChange} 
+              required 
+              />
           </label>
           <br />
           <label>
             Description:
-            <textarea name="description" value={isEditing ? editProduct.description : newProduct.description} onChange={handleChange} required />
+            <textarea 
+              name="description" 
+              value={formData.description}
+              onChange={handleChange} 
+              required
+            />
           </label>
           <br />
           <label>
             Price:
-            <input type="number" name="price" step="any" value={isEditing ? editProduct.price : newProduct.price} onChange={handleChange} required />
+            <input 
+              type="number" 
+              name="price" 
+              step="any" 
+              value={formData.price}
+              onChange={handleChange} 
+              required 
+            />
           </label>
           <br />
-          <button type="submit">{isEditing ? 'Update Product' : 'Create Product'}</button>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+            <button type="button" onClick={() => { setIsEditing(false); setCurrentProductID(null); setFormData({ name: '', category: '', brand: '', size: '', size_unit: '', description: '', price: '' }); }}>Cancel</button>
+          </div>
         </form>
       </div>
       <div>
