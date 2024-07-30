@@ -58,7 +58,6 @@ const CreateAccount = () => {
     return (
         <div>
             <h1>Create Account</h1>
-            <h2><a href='/'>Home</a></h2>
             <form onSubmit={handleSubmit}>
                 <label>
                     Name:
@@ -104,6 +103,7 @@ const CreateAccount = () => {
                 {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                 <button type="submit">Create Account</button>
             </form>
+            <a href="/"><button>Home</button></a>
         </div>
     );
 };

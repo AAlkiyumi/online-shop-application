@@ -99,7 +99,6 @@ const CreditCardManagement = () => {
   return (
     <div>
       <h1>Credit Card Management</h1>
-      <h2><a href='/'>Home</a></h2>
       <form onSubmit={handleSubmit}>
         <h2>{isEditing ? 'Edit Credit Card' : 'Add New Credit Card'}</h2>
         <label>
@@ -177,6 +176,7 @@ const CreditCardManagement = () => {
           <p>No credit cards available.</p>
         )}
       </ul>
+      <a href="/"><button>Home</button></a>
     </div>
   );
 };

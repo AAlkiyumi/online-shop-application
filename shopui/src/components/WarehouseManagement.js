@@ -112,7 +112,6 @@ const WarehouseManagement = () => {
   return (
     <div>
       <h1>Warehouse Management</h1>
-      <h2><a href='/'>Home</a></h2>
       <div>
         <h2>{isEditing ? 'Edit Warehouse' : 'Create New Warehouse'}</h2>
         <form onSubmit={handleSubmit}>
@@ -190,6 +189,7 @@ const WarehouseManagement = () => {
           ))}
         </ul>
       </div>
+      <a href="/"><button>Home</button></a>
     </div>
   );
 };

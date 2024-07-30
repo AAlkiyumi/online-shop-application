@@ -95,6 +95,7 @@ const ShoppingCart = () => {
         <p>Your cart is empty.</p>
       )}
     </div>
+    <a href="/"><button>Home</button></a>
   );
 };
 

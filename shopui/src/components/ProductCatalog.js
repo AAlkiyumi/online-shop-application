@@ -56,7 +56,6 @@ const ProductCatalog = () => {
   return (
     <div className="product-catalog">
       <h1>Product Catalog</h1>
-      <h2><a href='/'>Home</a></h2>
       <div className="products">
         {products.map((product) => (
           <div key={product.prod_ID} className="product">
@@ -73,6 +72,7 @@ const ProductCatalog = () => {
         removeFromCart={removeFromCart}
         handleCheckout={handleCheckout}
       />
+      <a href="/"><button>Home</button></a>
     </div>
   );
 };
