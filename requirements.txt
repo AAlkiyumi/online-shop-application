@@ -1,1 +1,4 @@
-
+Django
+Django-REST-Framework
+Django-Cors-Headers
+psycopg2
