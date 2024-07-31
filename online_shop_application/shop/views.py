@@ -1,4 +1,5 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, status
+from rest_framework.response import Response
 from .models import Customer, Address, CreditCard, Staff, Product, Warehouse, Stock, CustOrder, OrderItem, DeliveryPlan
 from .serializers import CustomerSerializer, AddressSerializer, CreditCardSerializer, StaffSerializer, ProductSerializer, WarehouseSerializer, StockSerializer, CustOrderSerializer, OrderItemSerializer, DeliveryPlanSerializer
 
@@ -46,12 +47,12 @@ class CustOrderViewSet(viewsets.ModelViewSet):
         order = CustOrder.objects.create(**order_data, credit_card=credit_card, customer=customer)
         
         # Handle order items and update stock
-        for item in order_data['items']:
-            OrderItem.objects.create(order=order, **item)
-            product = Product.objects.get(prod_ID=item['product'])
-            stock = Stock.objects.get(product=product, warehouse=order.warehouse)
-            stock.quantity -= item['quantity']
-            stock.save()
+        # for item in order_data['items']:
+        #     OrderItem.objects.create(order=order, **item)
+        #     product = Product.objects.get(prod_ID=item['product'])
+        #     stock = Stock.objects.get(product=product, warehouse=order.warehouse)
+        #     stock.quantity -= item['quantity']
+        #     stock.save()
 
         # Update customer balance
         customer.balance -= order_data['total_price']

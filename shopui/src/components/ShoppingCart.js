@@ -70,12 +70,13 @@ const ShoppingCart = ({ cart = [], updateCartQuantity, removeFromCart, handleChe
       const orderId = orderResponse.data.order_ID;
 
       // Create order items
-      const orderItems = cart.map(item => ({
-        product: item.prod_ID,
-        quantity: item.quantity,
-        order: orderId,
-      }));
-      await axios.post(`${API_URL}/orderitems/`, orderItems);
+      for (const item of cart) {
+        await axios.post(`${API_URL}/orderitems/`, {
+          product: item.prod_ID,
+          quantity: item.quantity,
+          order: orderId,
+        });
+      }
 
       // Update customer balance
       await axios.patch(`${API_URL}/customers/${currentCustomer.cust_ID}/`, {
@@ -83,11 +84,11 @@ const ShoppingCart = ({ cart = [], updateCartQuantity, removeFromCart, handleChe
       });
 
       // Update stock quantities
-      for (const item of cart) {
-        await axios.patch(`${API_URL}/stock/${item.prod_ID}/`, {
-          quantity: item.quantity // Reduce quantity in the warehouse
-        });
-      }
+      // for (const item of cart) {
+      //   await axios.patch(`${API_URL}/stock/${item.prod_ID}/`, {
+      //     quantity: item.quantity // Reduce quantity in the warehouse
+      //   });
+      // }
 
       alert('Order placed successfully!');
       handleCheckout(); // Clear cart after successful order
