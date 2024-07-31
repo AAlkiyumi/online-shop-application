@@ -85,7 +85,6 @@ const AddressManagement = () => {
   return (
     <div>
       <h1>Address Management</h1>
-      <h2><a href='/'>Home</a></h2>
       <form onSubmit={handleSubmit}>
         <h2>{isEditing ? 'Edit Address' : 'Add New Address'}</h2>
         <label>
@@ -180,6 +179,7 @@ const AddressManagement = () => {
           <p>No addresses available.</p>
         )}
       </ul>
+      <a href="/"><button>Home</button></a>
     </div>
   );
 };

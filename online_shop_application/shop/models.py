@@ -14,6 +14,7 @@ class Address(models.Model):
     ADDRESS_TYPE_CHOICES = [
         ('B', 'Billing'),
         ('S', 'Shipping'),
+        ('W', 'Warehouse'),
     ]
     address_ID = models.AutoField(primary_key=True)
     street = models.CharField(max_length=20)

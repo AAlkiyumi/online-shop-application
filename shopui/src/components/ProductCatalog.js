@@ -60,8 +60,8 @@ const ProductCatalog = () => {
 
   return (
     <div className="product-catalog">
+      <a href='/'><button>Home</button></a>
       <h1>Product Catalog</h1>
-      <h2><a href='/'>Home</a></h2>
 
       <div>
         <label htmlFor="category">Filter by category:</label>

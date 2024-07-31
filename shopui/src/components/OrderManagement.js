@@ -110,7 +110,6 @@ const OrderManagement = () => {
   return (
     <div className="order-management-container">
       <h1>Order Management</h1>
-      <h2><a href='/'>Home</a></h2>
       <div className="order-form">
         <h2>Create New Order</h2>
         <input
@@ -256,6 +255,7 @@ const OrderManagement = () => {
           ))}
         </ul>
       </div>
+      <a href="/"><button>Home</button></a>
     </div>
   );
 };
