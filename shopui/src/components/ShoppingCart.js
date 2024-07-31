@@ -78,6 +78,27 @@ const ShoppingCart = ({ cart = [], updateCartQuantity, removeFromCart, handleChe
         });
       }
 
+      let date = new Date();
+      date.setDate(date.getDate() + 1);
+      let shippingDate = date.toISOString().split('T')[0];
+      
+      if (deliveryPlan === 'Standard') {
+        date.setDate(date.getDate() + 3);
+      } else if (deliveryPlan === 'Express') {
+        date.setDate(date.getDate() + 1);
+      }
+      
+      let deliveryDate = date.toISOString().split('T')[0];
+
+      // Add delivery plan
+      await axios.post(`${API_URL}/deliveryplans/`, {
+        delivery_type: deliveryPlan,
+        delivery_price: totalPrice,
+        delivery_date: deliveryDate,
+        ship_date: shippingDate,
+        order: orderId
+      });
+
       // Update customer balance
       await axios.patch(`${API_URL}/customers/${currentCustomer.cust_ID}/`, {
         balance: currentCustomer.balance - totalPrice
@@ -149,7 +170,6 @@ const ShoppingCart = ({ cart = [], updateCartQuantity, removeFromCart, handleChe
           <button onClick={handleCheckoutClick}>Checkout</button>
         </>
       )}
-      <a href="/"><button>Home</button></a>
     </div>
   );
 };
