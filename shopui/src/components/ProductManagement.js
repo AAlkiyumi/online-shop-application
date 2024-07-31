@@ -89,8 +89,9 @@ const ProductManagement = () => {
     <div>
       <h1>Product Management</h1>
       <div>
-        <h2>{isEditing ? 'Edit Product' : 'Create New Product'}</h2>
         <form onSubmit={handleSubmit}>
+          <h2>{isEditing ? 'Edit Product' : 'Create New Product'}</h2>
+          <br/>
           <label>
             Name:
             <input 
@@ -200,7 +201,6 @@ const ProductManagement = () => {
           ))}
         </ul>
       </div>
-      <a href="/"><button>Home</button></a>
     </div>
   );
 };

@@ -85,101 +85,105 @@ const AddressManagement = () => {
   return (
     <div>
       <h1>Address Management</h1>
-      <form onSubmit={handleSubmit}>
-        <h2>{isEditing ? 'Edit Address' : 'Add New Address'}</h2>
-        <label>
-          Street:
-          <input
-            type="text"
-            name="street"
-            value={formData.street}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          City:
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          State:
-          <input
-            type="text"
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Zipcode:
-          <input
-            type="text"
-            name="zipcode"
-            value={formData.zipcode}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Country:
-          <select
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select a country</option>
-            {countries.map(country => (
-              <option value={country.code}>
-                {country.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Type:
-          <select
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            required
-          >
-            <option value="B">Billing</option>
-            <option value="S">Shipping</option>
-          </select>
-        </label>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
-          <button type="button" onClick={() => { setIsEditing(false); setCurrentAddressId(null); setFormData({ street: '', city: '', state: '', zipcode: '', country: '', type: 'B' }); }}>Cancel</button>
-        </div>
-      </form>
-      <h2>Address List</h2>
-      <ul>
-        {addresses.length > 0 ? (
-          addresses.filter(address => address.type !== 'W').map(address => (
-            <li key={address.address_ID}>
-              <p>Street: {address.street}</p>
-              <p>City: {address.city}</p>
-              <p>State: {address.state}</p>
-              <p>Zipcode: {address.zipcode}</p>
-              <p>Country: {address.country}</p>
-              <p>Type: {address.type === 'B' ? 'Billing' : 'Shipping'}</p>
-              <button onClick={() => handleEdit(address)}>Edit</button>
-              <button onClick={() => handleDelete(address.address_ID)}>Delete</button>
-            </li>
-          ))
-        ) : (
-          <p>No addresses available.</p>
-        )}
-      </ul>
-      <a href="/"><button>Home</button></a>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <h2>{isEditing ? 'Edit Address' : 'Add New Address'}</h2>
+          <br/>
+          <label>
+            Street:
+            <input
+              type="text"
+              name="street"
+              value={formData.street}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            City:
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            State:
+            <input
+              type="text"
+              name="state"
+              value={formData.state}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Zipcode:
+            <input
+              type="text"
+              name="zipcode"
+              value={formData.zipcode}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Country:
+            <select
+              name="country"
+              value={formData.country}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select a country</option>
+              {countries.map(country => (
+                <option value={country.code}>
+                  {country.name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Type:
+            <select
+              name="type"
+              value={formData.type}
+              onChange={handleChange}
+              required
+            >
+              <option value="B">Billing</option>
+              <option value="S">Shipping</option>
+            </select>
+          </label>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+            <button type="button" onClick={() => { setIsEditing(false); setCurrentAddressId(null); setFormData({ street: '', city: '', state: '', zipcode: '', country: '', type: 'B' }); }}>Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <h2>Address List</h2>
+        <ul>
+          {addresses.length > 0 ? (
+            addresses.filter(address => address.type !== 'W').map(address => (
+              <li key={address.address_ID}>
+                <p>Street: {address.street}</p>
+                <p>City: {address.city}</p>
+                <p>State: {address.state}</p>
+                <p>Zipcode: {address.zipcode}</p>
+                <p>Country: {address.country}</p>
+                <p>Type: {address.type === 'B' ? 'Billing' : 'Shipping'}</p>
+                <button onClick={() => handleEdit(address)}>Edit</button>
+                <button onClick={() => handleDelete(address.address_ID)}>Delete</button>
+              </li>
+            ))
+          ) : (
+            <p>No addresses available.</p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };

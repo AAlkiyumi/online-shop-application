@@ -103,7 +103,6 @@ const CreateAccount = () => {
                 {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
                 <button type="submit">Create Account</button>
             </form>
-            <a href="/"><button>Home</button></a>
         </div>
     );
 };

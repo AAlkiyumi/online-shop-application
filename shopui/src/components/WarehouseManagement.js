@@ -113,8 +113,9 @@ const WarehouseManagement = () => {
     <div>
       <h1>Warehouse Management</h1>
       <div>
-        <h2>{isEditing ? 'Edit Warehouse' : 'Create New Warehouse'}</h2>
         <form onSubmit={handleSubmit}>
+          <h2>{isEditing ? 'Edit Warehouse' : 'Create New Warehouse'}</h2>
+          <br/>
           <label>
             Street:
             <input

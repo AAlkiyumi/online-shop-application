@@ -12,10 +12,12 @@ import StockManagement from '../components/StockManagement';
 import OrderManagement from '../components/OrderManagement';
 import DeliveryPlanManagement from '../components/DeliveryPlanManagement';
 import CreateAccount from '../components/CreateAccount';
+import Navbar from '../components/navbar';
 
 function AppRoutes() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/products" element={<ProductCatalog />} />

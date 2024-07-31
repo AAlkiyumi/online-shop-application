@@ -99,84 +99,88 @@ const CreditCardManagement = () => {
   return (
     <div>
       <h1>Credit Card Management</h1>
-      <form onSubmit={handleSubmit}>
-        <h2>{isEditing ? 'Edit Credit Card' : 'Add New Credit Card'}</h2>
-        <label>
-          Card Number:
-          <input
-            type="text"
-            name="card_no"
-            value={formData.card_no}
-            onChange={handleChange}
-            required
-            disabled={isEditing} // Disable when editing
-          />
-        </label>
-        <label>
-          Card Type:
-          <input
-            type="text"
-            name="card_type"
-            value={formData.card_type}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Expiry Date:
-          <input
-            type="text"
-            name="expiry_date"
-            placeholder="MM/YY"
-            value={formData.expiry_date}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Address ID:
-          <input
-            type="text"
-            name="address_ID"
-            value={formData.address_ID}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <label>
-          Customer ID:
-          <input
-            type="text"
-            name="cust_ID"
-            value={formData.cust_ID}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <div style={{ display: 'flex', gap: '10px'}}>
-          <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
-          <button type="button" onClick={() => { setIsEditing(false); setCurrentCardId(null); setFormData({ card_no: '', card_type: '', expiry_date: '', address_ID: '', cust_ID: '' }); }}>Cancel</button>
-        </div>
-      </form>
-      <h2>Credit Card List</h2>
-      <ul>
-        {creditCards.length > 0 ? (
-          creditCards.map(card => (
-            <li key={card.card_no}>
-              <p>Card No: {card.card_no}</p>
-              <p>Type: {card.card_type}</p>
-              <p>Expiry Date: {card.expiry_date}</p>
-              <p>Address ID: {card.address_ID}</p>
-              <p>Customer ID: {card.cust_ID}</p>
-              <button onClick={() => handleEdit(card)}>Edit</button>
-              <button onClick={() => handleDelete(card.card_no)}>Delete</button>
-            </li>
-          ))
-        ) : (
-          <p>No credit cards available.</p>
-        )}
-      </ul>
-      <a href="/"><button>Home</button></a>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <h2>{isEditing ? 'Edit Credit Card' : 'Add New Credit Card'}</h2>
+          <br/>
+          <label>
+            Card Number:
+            <input
+              type="text"
+              name="card_no"
+              value={formData.card_no}
+              onChange={handleChange}
+              required
+              disabled={isEditing} // Disable when editing
+            />
+          </label>
+          <label>
+            Card Type:
+            <input
+              type="text"
+              name="card_type"
+              value={formData.card_type}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Expiry Date:
+            <input
+              type="text"
+              name="expiry_date"
+              placeholder="MM/YY"
+              value={formData.expiry_date}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Address ID:
+            <input
+              type="text"
+              name="address_ID"
+              value={formData.address_ID}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <label>
+            Customer ID:
+            <input
+              type="text"
+              name="cust_ID"
+              value={formData.cust_ID}
+              onChange={handleChange}
+              required
+            />
+          </label>
+          <div style={{ display: 'flex', gap: '10px'}}>
+            <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+            <button type="button" onClick={() => { setIsEditing(false); setCurrentCardId(null); setFormData({ card_no: '', card_type: '', expiry_date: '', address_ID: '', cust_ID: '' }); }}>Cancel</button>
+          </div>
+        </form>
+      </div>
+      <div>
+        <h2>Credit Card List</h2>
+        <ul>
+          {creditCards.length > 0 ? (
+            creditCards.map(card => (
+              <li key={card.card_no}>
+                <p>Card No: {card.card_no}</p>
+                <p>Type: {card.card_type}</p>
+                <p>Expiry Date: {card.expiry_date}</p>
+                <p>Address ID: {card.address_ID}</p>
+                <p>Customer ID: {card.cust_ID}</p>
+                <button onClick={() => handleEdit(card)}>Edit</button>
+                <button onClick={() => handleDelete(card.card_no)}>Delete</button>
+              </li>
+            ))
+          ) : (
+            <p>No credit cards available.</p>
+          )}
+        </ul>
+      </div>
     </div>
   );
 };

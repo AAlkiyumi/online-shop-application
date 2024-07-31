@@ -95,13 +95,14 @@ const StockManagement = () => {
     <div>
       <h1>Stock Management</h1>
       <div>
-        <h2>{isEditing ? 'Edit Stock' : 'Create New Stock'}</h2>
         <form
           onSubmit={(e) => {
             e.preventDefault();
             isEditing ? handleUpdate() : handleCreate();
           }}
         >
+          <h2>{isEditing ? 'Edit Stock' : 'Create New Stock'}</h2>
+          <br/>
           <label>
             Product:
             <select
@@ -147,7 +148,10 @@ const StockManagement = () => {
             />
           </label>
           <br />
-          <button type="submit">{isEditing ? 'Update Stock' : 'Create Stock'}</button>
+          <div style={{ display: 'flex', gap: '10px' }}>
+            <button type="submit">{isEditing ? 'Update' : 'Create'}</button>
+            <button type="button" onClick={() => { setIsEditing(false); setEditStock(null); setNewStock( {product: '', warehouse: '', quantity: ''} ); }} >Cancel</button>
+          </div>
         </form>
       </div>
       <div>
@@ -164,7 +168,6 @@ const StockManagement = () => {
           ))}
         </ul>
       </div>
-      <a href="/"><button>Home</button></a>
     </div>
   );
 };

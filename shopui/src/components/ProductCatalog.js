@@ -60,9 +60,8 @@ const ProductCatalog = () => {
 
   return (
     <div className="product-catalog">
-      <a href='/'><button>Home</button></a>
       <h1>Product Catalog</h1>
-
+      <br/>
       <div>
         <label htmlFor="category">Filter by category:</label>
         <select id="category" value={selectedCategory} onChange={handleCategoryChange}>

@@ -7,6 +7,10 @@ body {
   padding: 0;
 }
 
+.App {
+  padding-top: 60px;
+}
+
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 600;
@@ -14,44 +18,29 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation Bar */
 nav {
-  background: rgba(0, 0, 0, 0.8);
-  color: #fff;
-  padding: 15px 20px;
+  background-color: #333;
+  padding: 10px;
   position: fixed;
-  width: 100%;
   top: 0;
+  width: 100%;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
-
-nav .logo {
-  font-size: 1.8em;
-  font-weight: bold;
 }
 
 nav ul {
-  list-style: none;
-  padding: 0;
+  list-style-type: none;
   margin: 0;
+  padding: 0;
   display: flex;
   justify-content: space-around;
 }
 
 nav ul li {
-  margin: 0;
+  display: inline;
 }
 
 nav ul li a {
-  color: #fff;
+  color: white;
   text-decoration: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-nav ul li a:hover {
-  background: rgba(255, 255, 255, 0.3);
-  color: #ff4081;
 }
 
 /* Main Content */

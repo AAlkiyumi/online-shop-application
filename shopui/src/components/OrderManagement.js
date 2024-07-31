@@ -255,7 +255,6 @@ const OrderManagement = () => {
           ))}
         </ul>
       </div>
-      <a href="/"><button>Home</button></a>
     </div>
   );
 };
