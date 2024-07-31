@@ -7,6 +7,7 @@ const API_URL = 'http://127.0.0.1:8000';
 const ProductCatalog = () => {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
     fetchProducts();
@@ -53,19 +54,39 @@ const ProductCatalog = () => {
     console.log('Proceed to checkout with cart items:', cart);
   };
 
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
   return (
     <div className="product-catalog">
       <h1>Product Catalog</h1>
       <h2><a href='/'>Home</a></h2>
+
+      <div>
+        <label htmlFor="category">Filter by category:</label>
+        <select id="category" value={selectedCategory} onChange={handleCategoryChange}>
+          <option value="">All Categories</option>
+          <option value='Food'>Food</option>
+          <option value='Clothing'>Clothing</option>
+          <option value='Furniture'>Furniture</option>
+          <option value='Electronics'>Electronics</option>
+          <option value='Home Essentials'>Home Essentials</option>
+          <option value='Sports & Outdoors'>Sports & Outdoors</option>
+        </select>
+      </div>
+
       <div className="products">
-        {products.map((product) => (
-          <div key={product.prod_ID} className="product">
-            <h2>{product.name}</h2>
-            <p>{product.description}</p>
-            <p>${product.price}</p>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        ))}
+        {products
+          .filter(product => !selectedCategory || product.category === selectedCategory)
+          .map((product) => (
+            <div key={product.prod_ID} className="product">
+              <h2>{product.name}</h2>
+              <p>{product.description}</p>
+              <p>${product.price}</p>
+              <button onClick={() => addToCart(product)}>Add to Cart</button>
+            </div>
+          ))}
       </div>
       <ShoppingCart
         cart={cart}
