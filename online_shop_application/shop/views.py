@@ -1,5 +1,6 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from decimal import *
 from .models import Customer, Address, CreditCard, Staff, Product, Warehouse, Stock, CustOrder, OrderItem, DeliveryPlan
 from .serializers import CustomerSerializer, AddressSerializer, CreditCardSerializer, StaffSerializer, ProductSerializer, WarehouseSerializer, StockSerializer, CustOrderSerializer, OrderItemSerializer, DeliveryPlanSerializer
 
@@ -55,7 +56,7 @@ class CustOrderViewSet(viewsets.ModelViewSet):
         #     stock.save()
 
         # Update customer balance
-        customer.balance -= order_data['total_price']
+        customer.balance -= Decimal(order_data['total_price'])
         customer.save()
 
         serializer = self.get_serializer(order)
