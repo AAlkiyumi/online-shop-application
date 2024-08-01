@@ -83,7 +83,7 @@ Once the server is running and you've accessed http://127.0.0.1:3000/, you can:
 - Manage products, prices, and inventory (staff only).
 
 ## Contributors
-- Almaamar Alkiyumi - Django Developer
+- Almaamar Alkiyumi - Backend Developer
 - Jacob Towne - Web Developer
 - Joe Ferguson - SQL Developer
 - Zach Reising - Web Developer
